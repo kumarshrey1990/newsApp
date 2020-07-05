@@ -1,0 +1,12 @@
+.accordian-header{
+    background-color: #ff6600 !important;
+    color: #f6f6ef !important;
+    margin: none !important;
+}
+
+.graph-holder{
+    position: relative;
+    margin: auto;
+    width: 80vw;
+    min-width: 300px;
+}

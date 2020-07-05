@@ -1,0 +1,30 @@
+.header-bar{
+    width: 98%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ff6600;
+    padding: 0 1rem;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+}
+
+.header-bar div{
+    padding: 0 0.2rem;
+}
+
+.header-bar div:last-of-type {
+    margin-left: auto;
+  }
+
+.header-bar img{
+    border: 1px solid white;
+}
+
+.header-title a, .logout a{
+    text-decoration: none;
+    color: #222222;
+}

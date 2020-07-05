@@ -1,0 +1,40 @@
+.table {
+    min-width: 650;
+    background-color: #f6f6ef;
+}
+
+.table-header{
+    background-color: #ff6600;
+}
+
+.table-header .table-header-cell{
+    color: #f6f6ef;
+    font-weight: 600;
+}
+
+.table .small{
+    font-weight: 600 !important;
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: #222222;
+}
+
+.table .small.dusky{
+    color: #828282;
+}
+
+.table .medium{
+    font-weight: 600 !important;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #222222;
+}
+
+.MuiButton-root.pagination-button{
+    color: #ff6600 !important
+}
+
+.MuiButton-root.pagination-button:disabled{
+    color: #828282 !important;
+    pointer-events: none;
+}
