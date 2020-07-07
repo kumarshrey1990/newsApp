@@ -10,15 +10,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import IconButton from '@material-ui/core/IconButton';
 
 import './TableCommon.css';
 
 const TableCommon = props => {
   
-  const {tableHeader, records, page, changePage} = props
+  const {tableHeader, records, page, changePage, upvote} = props;
   const [prevDisabled, setPrevDisabled] = useState(true);
   const tableHeaderText = tableHeader;
-  // const recordsList = records.filter((row)=> row.title && row.url)
 
   const newWindow = (url) => {
     window.open(url)
@@ -49,7 +50,6 @@ const TableCommon = props => {
     return Math.floor(diffTime) + (diffTime > 1? ' years':' year') +'ago'
 
   }
-  console.log(page);
   useEffect(() => {
     page === 0 ? setPrevDisabled(true) : setPrevDisabled(false)
   },[page])
@@ -71,7 +71,8 @@ const TableCommon = props => {
             return (
             <TableRow key={row.objectID}>
               <TableCell className="medium">{row.num_comments}</TableCell>
-              <TableCell className="medium">{row.points}</TableCell>
+              <TableCell className="medium">{row.upvote}</TableCell>
+              <TableCell className="medium dusky"><span><IconButton aria-label="UpVote" onClick={()=>upvote(row.objectID)}><ArrowDropUpIcon/></IconButton></span></TableCell>
               <TableCell>
                 <Link onClick={()=>{newWindow(row.url)}} className="medium">{row.title} </Link> 
                 <Link className="small dusky">({url}) </Link>  

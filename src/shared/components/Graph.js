@@ -12,7 +12,7 @@ const Graph = props => {
     const [yaxis, setYaxis] = useState([]);
     useEffect(()=>{
         setXaxis(props.records.map((record)=> record.objectID));
-        setYaxis(props.records.map((record)=> record.points));
+        setYaxis(props.records.map((record)=> record.upvote));
     },[props.records])
     const data = {
         labels: xaxis,
