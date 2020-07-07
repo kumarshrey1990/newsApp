@@ -23,6 +23,10 @@
     color: #828282;
 }
 
+.table .small.button{
+    cursor: pointer;
+}
+
 .table .medium{
     font-weight: 600 !important;
     font-size: 0.9rem;

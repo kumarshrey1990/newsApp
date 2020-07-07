@@ -12,10 +12,16 @@ const Home = props => {
   useEffect(()=>{
     const serviceCall = () => {
       sendRequest(`${process.env.React_APP_BACKEND_URL}/search?page=${pageNumber}`).then((res)=>{
-        let data = res.hits.filter((row)=> row.title && row.url)
+        let data = res.hits.filter((row)=> row.title && row.url && (localStorage.getItem('hide').indexOf(row.objectID) < 0))
         data.map((news) => {
           news.upvote = localStorage.getItem(news.objectID) || 0
         })
+        if(localStorage.getItem('hide')){
+          
+          data.filter((news) => {
+            return localStorage.getItem('hide').indexOf(news.objectID) < 0
+          })
+        }
         setHackerNewsData(data)
       }).catch((err)=>{
         console.log(err)
@@ -39,7 +45,16 @@ const Home = props => {
         let upDatedNews = value.map((news) => news.objectID === id ? {...news, "upvote": parseInt(news.upvote) + 1} : news)
         return upDatedNews
       })
-    },[])
+  },[])
+
+  const hide = useCallback((id) => {
+      const value = localStorage.getItem('hide') ? [...localStorage.getItem('hide'), id] : [id];
+      localStorage.setItem( 'hide', value);
+      setHackerNewsData((value)=>{
+        let upDatedNews = value.filter((news) => news.objectID !== id )
+        return upDatedNews
+      })
+  },[])
 
   return (<React.Fragment>
     {(isLoading || !hackerNewsData) && <div className="center"><LoadingSpinner /></div>}
@@ -49,7 +64,8 @@ const Home = props => {
     tableHeader={tableHeaderText}
     page={pageNumber}
     changePage={changePage}
-    upvote={upvote}/>}
+    upvote={upvote}
+    hide={hide}/>}
     {!isLoading && hackerNewsData && <Graph records={hackerNewsData}/>}
   </React.Fragment>)
 }

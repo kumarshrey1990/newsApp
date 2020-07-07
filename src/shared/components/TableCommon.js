@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -17,7 +17,7 @@ import './TableCommon.css';
 
 const TableCommon = props => {
   
-  const {tableHeader, records, page, changePage, upvote} = props;
+  const {tableHeader, records, page, changePage, upvote, hide} = props;
   const [prevDisabled, setPrevDisabled] = useState(true);
   const tableHeaderText = tableHeader;
 
@@ -78,7 +78,8 @@ const TableCommon = props => {
                 <Link className="small dusky">({url}) </Link>  
                 <span className="small dusky">by </span> 
                 <Link className="small">{row.author} </Link>
-                <Link className="small dusky">{newsAge(row.created_at_i)}</Link>
+                <Link className="small dusky">{newsAge(row.created_at_i)}</Link> 
+                <span className="small button" onClick={() => hide(row.objectID)}> [ hide ]</span>
               </TableCell>
             </TableRow>
           )})}
