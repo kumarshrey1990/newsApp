@@ -47,7 +47,7 @@ const Home = props => {
   },[])
 
   const hide = useCallback((id) => {
-      const value = localStorage.getItem('hide') ? [...localStorage.getItem('hide'), id] : [id];
+      const value = localStorage.getItem('hide') ? localStorage.getItem('hide')+','+id : id;
       localStorage.setItem( 'hide', value);
       setHackerNewsData((value)=>{
         let upDatedNews = value.filter((news) => news.objectID !== id )
